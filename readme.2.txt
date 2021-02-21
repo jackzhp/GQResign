@@ -26,3 +26,23 @@ some explanation
 # now we zip                
     zip -r new.ipa Payload
 
+
+
+
+the old.ipa, could be built with xcode or command line:
+
+xcodebuild archive -project {appName}.xcodeproj -arch arm64
+ -scheme {appName}-mobile -configuration Release
+ -archivePath whereToStoreTheArchive -allowProvisioningUpdates
+ CODE_SIGN_IDENTITY='{signingCertificate}'
+project, scheme can be easily seen in xcode.
+CODE_SIGN_IDENTITY='{signingCertificate}' only for manual profile.
+
+xcodebuild -exportArchive -archivePath {appName}.xcarchive
+ -exportPath whereToExport
+ -exportOptionsPlist "export.plist"
+ -allowProvisioningUpdates
+
+where "export.plist" file specifies the method(ad-hoc, app-store, develement, enterprise) etc.
+    auto profile or manual profile.
+
